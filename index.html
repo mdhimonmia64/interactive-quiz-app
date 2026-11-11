@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An interactive multiple-choice quiz on web development basics.">
+  <title>Web Dev Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Web Dev Quiz</h1>
+    <p class="tagline">HTML, CSS &amp; JavaScript fundamentals</p>
+  </header>
+
+  <main class="aura aura-rainbow">
+    <section id="start-screen" class="card" aria-labelledby="start-title">
+      <h2 id="start-title" tabindex="-1">Ready to test your skills?</h2>
+      <form id="start-form">
+        <fieldset>
+          <legend>Choose a difficulty</legend>
+          <div id="difficulty-options" class="difficulty-options"></div>
+        </fieldset>
+
+        <label class="toggle">
+          <input type="checkbox" id="shuffle-toggle" checked>
+          <span>Randomize question and answer order</span>
+        </label>
+
+        <p id="best-score" class="best-score" aria-live="polite"></p>
+
+        <button type="submit" class="btn btn-primary btn-block">Start Quiz</button>
+      </form>
+    </section>
+
+    <section id="quiz-screen" class="card" aria-labelledby="question-counter" hidden>
+      <div class="quiz-meta">
+        <h2 id="question-counter" class="question-counter" tabindex="-1"></h2>
+        <p id="timer" class="timer" role="timer">
+          <span class="visually-hidden">Time left: </span><span id="timer-value">0:00</span>
+        </p>
+      </div>
+
+      <div class="progress">
+        <div class="progress-track" id="progress-track" role="progressbar"
+             aria-label="Questions answered" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <p id="progress-text" class="progress-text"></p>
+      </div>
+
+      <form id="question-form" novalidate>
+        <fieldset>
+          <legend id="question-text" class="question-text"></legend>
+          <div id="options" class="options"></div>
+        </fieldset>
+      </form>
+
+      <nav class="controls" aria-label="Quiz controls">
+        <button type="button" id="prev-btn" class="btn btn-secondary">&larr; Previous</button>
+        <button type="button" id="next-btn" class="btn btn-primary">Next &rarr;</button>
+        <button type="button" id="submit-btn" class="btn btn-success" hidden>Submit Quiz</button>
+      </nav>
+
+      <nav class="navigator" aria-label="Jump to question">
+        <ol id="navigator-list" class="navigator-list"></ol>
+      </nav>
+    </section>
+
+    <section id="result-screen" class="card" aria-labelledby="result-title" hidden>
+      <h2 id="result-title" tabindex="-1">Your Results</h2>
+
+      <div class="score-summary">
+        <p class="score-big" id="score-big"></p>
+        <p class="score-percent" id="score-percent"></p>
+      </div>
+      <p id="result-message" class="result-message"></p>
+      <p id="result-note" class="result-note" hidden></p>
+
+      <section aria-labelledby="review-title">
+        <h3 id="review-title">Review your answers</h3>
+        <ol id="review-list" class="review-list"></ol>
+      </section>
+
+      <button type="button" id="restart-btn" class="btn btn-primary btn-block">Restart Quiz</button>
+    </section>
+  </main>
+
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title">
+    <form method="dialog">
+      <h2 id="confirm-title">Submit with unanswered questions?</h2>
+      <p id="confirm-message"></p>
+      <div class="dialog-actions">
+        <button type="submit" value="cancel" class="btn btn-secondary">Go back</button>
+        <button type="submit" value="confirm" class="btn btn-success">Submit anyway</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer class="site-footer">
+    <p>Built with vanilla HTML, CSS & JavaScript.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
